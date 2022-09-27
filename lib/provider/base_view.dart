@@ -1,6 +1,7 @@
 import 'package:demo_app/provider/base_model.dart';
 import 'package:demo_app/provider/getit.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BaseView<T extends BaseModel> extends StatefulWidget {
   final Widget Function(BuildContext context, T model, Widget? child) builder;
@@ -22,8 +23,31 @@ class BaseView<T extends BaseModel> extends StatefulWidget {
 
 class _BaseViewState<T extends BaseModel> extends State<BaseView<T>> {
   T model = getIt<T>();
+
+  @override
+  void initState() {
+    if (widget.onModelReady != null) {
+      widget.onModelReady!(model);
+    }
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    if (widget.onModelDisposed != null) {
+      widget.onModelDisposed!(model);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ChangeNotifierProvider.value(
+      value: model,
+      child: Consumer<T>(
+        builder: widget.builder,
+        child: widget.child,
+      ),
+    );
   }
 }
