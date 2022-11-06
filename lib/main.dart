@@ -1,5 +1,6 @@
 import 'package:demo_app/provider/getit.dart';
 import 'package:demo_app/route_generator.dart';
+import 'package:demo_app/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -11,9 +12,10 @@ Future main() async {
   );
   setupLocator();
   runApp(
-    const MaterialApp(
+    MaterialApp(
+      navigatorKey: getIt<NavigationService>().navigatorKey,
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/splash',
       onGenerateRoute: RouteGenerator.generateRoute,
     ),
   );
