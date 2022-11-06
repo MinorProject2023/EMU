@@ -48,6 +48,7 @@ class _MyRegisterState extends State<MyRegister> {
                   child: Column(
                     children: [
                       TextField(
+                        controller: model.nameController,
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -68,6 +69,7 @@ class _MyRegisterState extends State<MyRegister> {
                         height: 10,
                       ),
                       TextField(
+                        controller: model.emailController,
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -88,6 +90,7 @@ class _MyRegisterState extends State<MyRegister> {
                         height: 10,
                       ),
                       TextField(
+                        controller: model.passController,
                         obscureText: true,
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
@@ -112,7 +115,7 @@ class _MyRegisterState extends State<MyRegister> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text(
-                            'Sign In',
+                            'Sign Up',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 27,
@@ -123,7 +126,7 @@ class _MyRegisterState extends State<MyRegister> {
                             radius: 30,
                             backgroundColor: const Color(0xff4c505b),
                             child: IconButton(
-                              onPressed: () {},
+                              onPressed: () => model.signUp(context),
                               icon: const Icon(
                                 Icons.arrow_forward,
                                 color: Colors.white,
@@ -140,10 +143,10 @@ class _MyRegisterState extends State<MyRegister> {
                         children: [
                           TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, 'register');
+                              Navigator.popAndPushNamed(context, '/login');
                             },
                             child: const Text(
-                              'Sign Up',
+                              'Sign In',
                               style: TextStyle(
                                 decoration: TextDecoration.underline,
                                 fontSize: 18,

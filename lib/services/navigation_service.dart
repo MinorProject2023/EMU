@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class NavigationService {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-  Future navigateTo(String routeName,
+  Future<dynamic> navigateTo(String routeName,
       {Object? arguments, bool withreplacement = false}) {
     if (withreplacement) {
       return navigatorKey.currentState!.pushNamedAndRemoveUntil(
