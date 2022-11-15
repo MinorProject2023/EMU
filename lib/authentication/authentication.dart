@@ -1,3 +1,4 @@
+import 'package:demo_app/constant/appconstant.dart';
 import 'package:demo_app/models/users.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -58,6 +59,7 @@ class AuthenticationHelper {
 
   Future signOut() async {
     await _auth.signOut();
+    AppConstant.showSuccessToast("Successfully logged out");
     print('SignOut');
   }
 }

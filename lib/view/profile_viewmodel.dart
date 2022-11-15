@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class ProfileViewModel extends BaseModel {
   final auth = FirebaseAuth.instance;
   String name = "";
+  var uid;
 
   // void setName() async {
   //   uid = auth.currentUser?.uid;
@@ -22,7 +23,7 @@ class ProfileViewModel extends BaseModel {
   // }
 
   void init() {
-    var uid = auth.currentUser?.uid;
+    uid = auth.currentUser?.uid;
     var data = FirebaseFirestore.instance
         .collection("users")
         .doc(uid)

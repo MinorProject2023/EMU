@@ -108,8 +108,8 @@ class _MyLoginState extends State<MyLogin> {
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                    model.navigationService
-                                        .navigateTo('register');
+                                    Navigator.popAndPushNamed(
+                                        context, '/register');
                                   },
                                   child: const Text(
                                     'Sign Up',

@@ -22,6 +22,7 @@ class _MyRegisterState extends State<MyRegister> {
         ),
         child: Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.transparent,
             elevation: 0,
           ),
