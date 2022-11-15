@@ -21,6 +21,8 @@ class LoginViewModel extends BaseModel {
       );
       AppConstant.showSuccessToast("Successfully Signed In");
       // Navigator.pushNamed(context, '/profile');
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil('/profile', (Route<dynamic> route) => false);
       notifyListeners();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

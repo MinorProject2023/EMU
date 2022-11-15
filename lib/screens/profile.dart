@@ -1,5 +1,7 @@
 import 'package:demo_app/authentication/authentication.dart';
 import 'package:demo_app/provider/base_view.dart';
+import 'package:demo_app/utils/get_bills.dart';
+import 'package:demo_app/utils/get_user_data.dart';
 import 'package:demo_app/view/profile_viewmodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,47 @@ class Profile extends StatelessWidget {
         model.init();
       },
       builder: (context, model, child) => Scaffold(
+        appBar: AppBar(
+          actions: [
+            // TextButton(
+            //   onPressed: () {
+            //     AuthenticationHelper().signOut();
+            //     Navigator.popAndPushNamed(context, '/login');
+            //   },
+            //   child: const Text(
+            //     'Sign Out',
+            //     style: TextStyle(fontSize: 25, color: Colors.white),
+            //   ),
+            // ),
+            IconButton(
+              splashRadius: 30,
+              onPressed: () {
+                AuthenticationHelper().signOut();
+                Navigator.popAndPushNamed(context, '/login');
+              },
+              icon: const Icon(Icons.logout),
+            ),
+          ],
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              ListTile(
+                title: const Text('Item 1'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Item 2'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        ),
         body: Center(
           child: FirebaseAuth.instance.currentUser == null
               ? Column(
@@ -37,15 +80,56 @@ class Profile extends StatelessWidget {
               : Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    model.name == ""
-                        ? const CircularProgressIndicator()
-                        : Text(
-                            'Welcome ' + model.name,
-                            style: const TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
+                    // Text(
+                    //   'Welcome ' + model.name,
+                    //   style: const TextStyle(
+                    //     fontSize: 30,
+                    //     fontWeight: FontWeight.w700,
+                    //   ),
+                    // ),
+                    Container(
+                      height: 60,
+                      width: 60,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            image: AssetImage('assets/profile.png'),
+                            fit: BoxFit.cover),
+                      ),
+                    ),
+                    GetUserName(
+                      model.uid,
+                      const TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //   children: <Widget>[
+                    //     ElevatedButton(
+                    //       onPressed: () {},
+                    //       child: const Text(
+                    //         "Current Bill",
+                    //         style: TextStyle(color: Colors.white, fontSize: 20),
+                    //       ),
+                    //     ),
+                    //     ElevatedButton(
+                    //       onPressed: () {},
+                    //       child: const Text(
+                    //         "Past Bill",
+                    //         style: TextStyle(color: Colors.white, fontSize: 20),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    GetBills(
+                      model.uid,
+                      const TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                     TextButton(
                       onPressed: () {
                         AuthenticationHelper().signOut();

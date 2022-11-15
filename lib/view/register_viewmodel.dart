@@ -51,5 +51,6 @@ class RegisterViewModel extends BaseModel {
       password: passController.text,
       name: nameController.text,
     );
+    Navigator.popAndPushNamed(context, '/login');
   }
 }
