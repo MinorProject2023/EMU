@@ -4,6 +4,7 @@ import 'package:demo_app/screens/login.dart';
 import 'package:demo_app/screens/profile.dart';
 import 'package:demo_app/screens/register.dart';
 import 'package:demo_app/screens/splash_screen.dart';
+import 'package:demo_app/utils/generate_bill.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -24,6 +25,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const Profile());
       case '/home':
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+      case '/generate_bill':
+        return MaterialPageRoute(builder: (_) => const GenerateBill());
       default:
         return _errorRoute();
     }

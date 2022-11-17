@@ -28,9 +28,9 @@ class _MyLoginState extends State<MyLogin> {
                 body: Stack(
                   children: [
                     Container(
-                      padding: const EdgeInsets.only(left: 35, top: 130),
+                      padding: const EdgeInsets.only(left: 35, top: 110),
                       child: const Text(
-                        'Welcome\nBack',
+                        'Welcome\nTo\nEMU NITP',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 33,
