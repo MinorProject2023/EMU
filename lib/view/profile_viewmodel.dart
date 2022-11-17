@@ -6,6 +6,19 @@ import 'package:flutter/material.dart';
 class ProfileViewModel extends BaseModel {
   final auth = FirebaseAuth.instance;
   String name = "";
+  String address = "";
+  String bill_no = "";
+  String mob = "";
+  String email = "";
+  String category = "";
+  String meter_phase = "";
+  String sanction_load = "";
+  String status = "";
+  String bill_date = "";
+  String due_date = "";
+  String reading_date = "";
+  String pre_reading = "";
+  String curr_reading = "";
   var uid;
 
   // void setName() async {
@@ -30,6 +43,7 @@ class ProfileViewModel extends BaseModel {
         .snapshots()
         .listen((event) {
       name = event.data()!['name'];
+      address = event.data()!['address'];
     });
     print("........." + name + "..........");
     notifyListeners();
