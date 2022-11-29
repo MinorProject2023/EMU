@@ -43,24 +43,52 @@ class GetUserName extends StatelessWidget {
           double e = total + due + penalty;
           switch (para) {
             case 'name':
+              if (data['name'] == null) {
+                return Text(
+                  "Unknown",
+                  textAlign: TextAlign.center,
+                  style: style,
+                );
+              }
               return Text(
                 "${data['name']}",
                 textAlign: TextAlign.center,
                 style: style,
               );
             case 'address':
+              if (data['address'] == null) {
+                return Text(
+                  "Unknown",
+                  textAlign: TextAlign.center,
+                  style: style,
+                );
+              }
               return Text(
                 "${data['address']}",
                 textAlign: TextAlign.center,
                 style: style,
               );
             case 'bill_no':
+              if (data['bill_no'] == null) {
+                return Text(
+                  "Unknown",
+                  textAlign: TextAlign.center,
+                  style: style,
+                );
+              }
               return Text(
                 "${data['bill_no']}",
                 textAlign: TextAlign.center,
                 style: style,
               );
             case 'mob':
+              if (data['mob'] == null) {
+                return Text(
+                  "Unknown",
+                  textAlign: TextAlign.center,
+                  style: style,
+                );
+              }
               return Text(
                 "${data['mob']}",
                 textAlign: TextAlign.center,
@@ -73,24 +101,52 @@ class GetUserName extends StatelessWidget {
                 style: style,
               );
             case 'category':
+              if (data['category'] == null) {
+                return Text(
+                  "Unknown",
+                  textAlign: TextAlign.center,
+                  style: style,
+                );
+              }
               return Text(
                 "${data['category']}",
                 textAlign: TextAlign.center,
                 style: style,
               );
             case 'phase':
+              if (data['phase'] == null) {
+                return Text(
+                  "Unknown",
+                  textAlign: TextAlign.center,
+                  style: style,
+                );
+              }
               return Text(
                 "${data['phase']}",
                 textAlign: TextAlign.center,
                 style: style,
               );
             case 'sanction_load':
+              if (data['sanction_load'] == null) {
+                return Text(
+                  "Unknown",
+                  textAlign: TextAlign.center,
+                  style: style,
+                );
+              }
               return Text(
                 "${data['sanction_load']}",
                 textAlign: TextAlign.center,
                 style: style,
               );
             case 'bill_date':
+              if (data['bill_date'] == null) {
+                return Text(
+                  "Unknown",
+                  textAlign: TextAlign.center,
+                  style: style,
+                );
+              }
               DateTime dt = (data['bill_date'] as Timestamp).toDate();
               String dateSlug =
                   "${dt.year.toString()}-${dt.month.toString().padLeft(2, '0')}-${dt.day.toString().padLeft(2, '0')}";
@@ -100,7 +156,15 @@ class GetUserName extends StatelessWidget {
                 style: style,
               );
             case 'due_date':
+              if (data['due_date'] == null) {
+                return Text(
+                  "Invalid",
+                  textAlign: TextAlign.center,
+                  style: style,
+                );
+              }
               DateTime dt = (data['due_date'] as Timestamp).toDate();
+
               String dateSlug =
                   "${dt.year.toString()}-${dt.month.toString().padLeft(2, '0')}-${dt.day.toString().padLeft(2, '0')}";
               return Text(
@@ -109,18 +173,39 @@ class GetUserName extends StatelessWidget {
                 style: style,
               );
             case 'meter_no':
+              if (data['meter_no'] == null) {
+                return Text(
+                  "Unknown",
+                  textAlign: TextAlign.center,
+                  style: style,
+                );
+              }
               return Text(
                 "${data['meter_no']}",
                 textAlign: TextAlign.center,
                 style: style,
               );
             case 'present_reading':
+              if (data['present_reading'] == null) {
+                return Text(
+                  "Unknown",
+                  textAlign: TextAlign.center,
+                  style: style,
+                );
+              }
               return Text(
                 "$present",
                 textAlign: TextAlign.center,
                 style: style,
               );
             case 'past_reading':
+              if (data['past_reading'] == null) {
+                return Text(
+                  "Unknown",
+                  textAlign: TextAlign.center,
+                  style: style,
+                );
+              }
               return Text(
                 "$past",
                 textAlign: TextAlign.center,
@@ -188,6 +273,19 @@ class GetUserName extends StatelessWidget {
             case 'e':
               return Text(
                 "$e",
+                textAlign: TextAlign.center,
+                style: style,
+              );
+            case 'consumer_id':
+              if (data['consumer_id'] == null) {
+                return Text(
+                  "Unknown",
+                  textAlign: TextAlign.center,
+                  style: style,
+                );
+              }
+              return Text(
+                data['consumer_id'],
                 textAlign: TextAlign.center,
                 style: style,
               );
