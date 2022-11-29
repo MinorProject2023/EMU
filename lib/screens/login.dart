@@ -14,130 +14,158 @@ class MyLogin extends StatefulWidget {
 class _MyLoginState extends State<MyLogin> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+
     return BaseView<LoginViewModel>(
       builder: (ctx, model, child) => FirebaseAuth.instance.currentUser == null
-          ? Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/login.png'),
-                  fit: BoxFit.cover,
+          ? Scaffold(
+              body: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                    Colors.white,
+                    Colors.white,
+                    Colors.yellow,
+                    Colors.red,
+                    Colors.blue
+                  ], begin: Alignment.topRight, end: Alignment.bottomLeft),
                 ),
-              ),
-              child: Scaffold(
-                backgroundColor: Colors.transparent,
-                body: Stack(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.only(left: 35, top: 110),
-                      child: const Text(
-                        'Welcome\nTo\nEMU NITP',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 33,
-                        ),
-                      ),
-                    ),
-                    SingleChildScrollView(
-                      child: Container(
-                        padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).size.height * 0.5,
-                          left: 35,
-                          right: 35,
-                        ),
-                        child: Column(
-                          children: [
-                            TextField(
-                              controller: model.emailController,
-                              decoration: InputDecoration(
-                                fillColor: Colors.grey.shade100,
-                                filled: true,
-                                hintText: 'Email',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                child: Scaffold(
+                  backgroundColor: Colors.transparent,
+                  body: Stack(
+                    children: [
+                      // Container(
+                      //   padding: const EdgeInsets.only(left: 50, top: 40),
+                      //   child: Text(
+                      //     'Welcome to EMU\n NITP',
+                      //     textAlign: TextAlign.center,
+                      //     style: TextStyle(
+                      //       color: Colors.deepOrange.shade900,
+                      //       fontSize: 33,
+                      //     ),
+                      //   ),
+                      // ),
+                      // Row(
+                      //   children: [
+                      //     Image(
+                      //       image: AssetImage('assets/nitp.png'),
+                      //       ,
+                      //     ),
+                      //   ],
+                      // ),
+                      SingleChildScrollView(
+                        child: Container(
+                          padding: EdgeInsets.only(
+                            top: height * 0.2,
+                            left: 35,
+                            right: 35,
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 60,
+                                width: 60,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image: AssetImage('assets/profile.png'),
+                                      fit: BoxFit.cover),
                                 ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            TextField(
-                              controller: model.passController,
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                fillColor: Colors.grey.shade100,
-                                filled: true,
-                                hintText: 'Password',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                              Image(
+                                image: const AssetImage(
+                                    'assets/emu_logo-removebg.png'),
+                                height: height * 0.3,
+                              ),
+                              const SizedBox(
+                                height: 60,
+                              ),
+                              TextField(
+                                controller: model.emailController,
+                                decoration: InputDecoration(
+                                  fillColor:
+                                      const Color.fromARGB(150, 245, 245, 245),
+                                  filled: true,
+                                  hintText: 'Email',
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Sign In',
+                              // MyCustomTextField(
+                              //   controller: model.emailController,
+                              //   hint: 'Email',
+                              // ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              TextField(
+                                controller: model.passController,
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                  fillColor:
+                                      const Color.fromARGB(150, 245, 245, 245),
+                                  filled: true,
+                                  hintText: 'Password',
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                              ),
+                              // MyCustomTextField(
+                              //   controller: model.passController,
+                              //   hint: 'Password',
+                              // ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Sign In',
+                                    style: TextStyle(
+                                      color: Colors.yellow.shade200,
+                                      fontSize: 27,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  CircleAvatar(
+                                    radius: 30,
+                                    backgroundColor: Colors.deepOrange.shade900,
+                                    child: IconButton(
+                                      onPressed: () => model
+                                          .signInWithEmailAndPassword(context),
+                                      icon: Icon(
+                                        Icons.arrow_forward,
+                                        color: Colors.yellow.shade200,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              TextButton(
+                                onPressed: () => model.resetPass(
+                                    context: context,
+                                    email: model.emailController.text),
+                                child: Text(
+                                  'Forgot Password',
                                   style: TextStyle(
-                                    color: Color(0xff4c505b),
-                                    fontSize: 27,
-                                    fontWeight: FontWeight.w700,
+                                    decoration: TextDecoration.underline,
+                                    fontSize: 18,
+                                    color: Colors.yellow.shade200,
                                   ),
                                 ),
-                                CircleAvatar(
-                                  radius: 30,
-                                  backgroundColor: Color(0xff4c505b),
-                                  child: IconButton(
-                                    onPressed: () => model
-                                        .signInWithEmailAndPassword(context),
-                                    icon: const Icon(
-                                      Icons.arrow_forward,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.popAndPushNamed(
-                                        context, '/register');
-                                  },
-                                  child: const Text(
-                                    'Sign Up',
-                                    style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      fontSize: 18,
-                                      color: Color(0xff4c505b),
-                                    ),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: const Text(
-                                    'Forgot Password',
-                                    style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      fontSize: 18,
-                                      color: Color(0xff4c505b),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             )

@@ -30,9 +30,19 @@ class LoginViewModel extends BaseModel {
       } else if (e.code == 'wrong-answer') {
         print('Wrong Passworng');
       } else {
-        print("Erro");
+        print("Error");
       }
       AppConstant.showFailToast(e.code);
+    }
+  }
+
+  void resetPass({required BuildContext context, required String email}) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+      Navigator.pushNamed(context, '/reset');
+      AppConstant.showSuccessToast('Reset mail sent');
+    } on FirebaseAuthException catch (e) {
+      AppConstant.showFailToast(e.message.toString());
     }
   }
 }

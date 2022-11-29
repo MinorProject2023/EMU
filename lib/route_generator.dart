@@ -1,9 +1,12 @@
+import 'package:demo_app/screens/add_consumer.dart';
 import 'package:demo_app/screens/home_screen.dart';
 import 'package:demo_app/screens/landing_page.dart';
 import 'package:demo_app/screens/login.dart';
 import 'package:demo_app/screens/profile.dart';
 import 'package:demo_app/screens/register.dart';
+import 'package:demo_app/screens/reset_screen.dart';
 import 'package:demo_app/screens/splash_screen.dart';
+import 'package:demo_app/screens/update_reading.dart';
 import 'package:demo_app/utils/generate_bill.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +30,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case '/generate_bill':
         return MaterialPageRoute(builder: (_) => const GenerateBill());
+      case '/reset':
+        return MaterialPageRoute(builder: (_) => const ResetScreen());
+      case '/addConsumer':
+        return MaterialPageRoute(builder: (_) => const AddConsumer());
+      case '/updateReading':
+        return MaterialPageRoute(builder: (_) => const UpdateReading());
       default:
         return _errorRoute();
     }

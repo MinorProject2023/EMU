@@ -32,6 +32,7 @@ class AuthenticationHelper {
       );
       return authResult.user != null;
     } on FirebaseAuthException catch (e) {
+      AppConstant.showFailToast(e.message.toString());
       return e.message;
     }
   }
