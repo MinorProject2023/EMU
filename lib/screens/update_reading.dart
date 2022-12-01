@@ -10,64 +10,70 @@ class UpdateReading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return BaseView<AddConsumerViewModel>(
       builder: (context, model, child) => Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/nitp.png'),
-                fit: BoxFit.fitWidth,
-                opacity: 0.8),
-          ),
-          child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.deepOrange.shade900,
-              title: const Text('Update Reading'),
-              actions: [
-                IconButton(
-                  splashRadius: 30,
+        appBar: AppBar(
+          backgroundColor: Colors.deepOrange.shade900,
+          title: const Text('Update Reading'),
+          actions: [
+            IconButton(
+              splashRadius: 30,
+              onPressed: () {
+                AuthenticationHelper().signOut();
+                Navigator.popAndPushNamed(context, '/login');
+              },
+              icon: const Icon(Icons.logout),
+            ),
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            height: height,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/emu_logo-removebg_small.png'),
+                alignment: Alignment.topCenter,
+              ),
+              gradient: LinearGradient(colors: [
+                Colors.white,
+                Colors.white,
+                Colors.yellow,
+                Colors.red,
+                Colors.blue
+              ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+            ),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                MyCustomTextField(
+                  controller: model.emailController,
+                  hint: "Email ID of consumer",
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                MyCustomTextField(
+                  controller: model.presentreadingController,
+                  hint: "Present Reading",
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                ElevatedButton(
                   onPressed: () {
-                    AuthenticationHelper().signOut();
-                    Navigator.popAndPushNamed(context, '/login');
+                    model.updateReading(
+                      email: model.emailController.text,
+                      present_reading: model.presentreadingController.text,
+                    );
                   },
-                  icon: const Icon(Icons.logout),
+                  child: const Text('Create bill'),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.deepOrange.shade900),
                 ),
               ],
-            ),
-            backgroundColor: Colors.transparent,
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  MyCustomTextField(
-                    controller: model.emailController,
-                    hint: "Email ID of consumer",
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  MyCustomTextField(
-                    controller: model.presentreadingController,
-                    hint: "Present Reading",
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      model.updateReading(
-                        email: model.emailController.text,
-                        present_reading: model.presentreadingController.text,
-                      );
-                    },
-                    child: const Text('Create bill'),
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepOrange.shade900),
-                  ),
-                ],
-              ),
             ),
           ),
         ),
