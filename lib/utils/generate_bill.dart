@@ -127,28 +127,28 @@ class GenerateBill extends StatelessWidget {
                 //   image: const AssetImage('assets/emu_logo-removebg.png'),
                 //   height: height * 0.2,
                 // ),
-                const Text(
-                  'Electricity Bill',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline),
-                ),
+                // const Text(
+                //   'Electricity Bill',
+                //   style: TextStyle(
+                //       fontWeight: FontWeight.bold,
+                //       decoration: TextDecoration.underline),
+                // ),
                 const SizedBox(
                   height: 5,
                 ),
                 Table(
                   border: TableBorder.all(color: Colors.black),
                   children: [
-                    table_row(model, 'Consumer Name', 'name'),
-                    table_row(model, 'Address', 'address'),
+                    // table_row(model, 'Consumer Name', 'name'),
+                    // table_row(model, 'Address', 'address'),
                     table_row(model, 'Bill No.', 'bill_no'),
-                    table_row(model, 'Mobile No.', 'mob'),
-                    table_row(model, 'Email ID', 'email'),
+                    // table_row(model, 'Mobile No.', 'mob'),
+                    // table_row(model, 'Email ID', 'email'),
                     table_row(model, 'Category of Connection', 'category'),
                     table_row(model, 'Meter Phase', 'phase'),
                     table_row(model, 'Sanction Load', 'sanction_load'),
-                    table_row(model, 'Bill Date', 'bill_date'),
-                    table_row(model, 'Due Date', 'due_date'),
+                    // table_row(model, 'Bill Date', 'bill_date'),
+                    // table_row(model, 'Due Date', 'due_date'),
                   ],
                 ),
                 const SizedBox(

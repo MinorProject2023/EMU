@@ -12,31 +12,37 @@ class AddConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<AddConsumerViewModel>(
       builder: (context, model, child) => Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(149, 161, 157, 157),
-            image: DecorationImage(
-                image: AssetImage('assets/nitp.png'),
-                fit: BoxFit.fitWidth,
-                opacity: 0.8),
+        body: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.deepOrange.shade900,
+            title: const Text('Add consumer'),
+            actions: [
+              IconButton(
+                splashRadius: 30,
+                onPressed: () {
+                  AuthenticationHelper().signOut();
+                  Navigator.popAndPushNamed(context, '/login');
+                },
+                icon: const Icon(Icons.logout),
+              ),
+            ],
           ),
-          child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.deepOrange.shade900,
-              title: const Text('Add consumer'),
-              actions: [
-                IconButton(
-                  splashRadius: 30,
-                  onPressed: () {
-                    AuthenticationHelper().signOut();
-                    Navigator.popAndPushNamed(context, '/login');
-                  },
-                  icon: const Icon(Icons.logout),
+          backgroundColor: Colors.transparent,
+          body: SingleChildScrollView(
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/emu_logo-removebg_small.png'),
+                  alignment: Alignment.topCenter,
                 ),
-              ],
-            ),
-            backgroundColor: Colors.transparent,
-            body: SingleChildScrollView(
+                gradient: LinearGradient(colors: [
+                  Colors.white,
+                  Colors.white,
+                  Colors.yellow,
+                  Colors.red,
+                  Colors.blue
+                ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+              ),
               child: Column(
                 children: [
                   const SizedBox(

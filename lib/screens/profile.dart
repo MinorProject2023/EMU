@@ -56,7 +56,7 @@ class Profile extends StatelessWidget {
               children: [
                 DrawerHeader(
                   child: const Text(
-                    'Drawer header',
+                    'Menu',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
